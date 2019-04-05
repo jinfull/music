@@ -83,3 +83,10 @@ production:
   database: music_production
   username: music
   password: <%= ENV['MUSIC_DATABASE_PASSWORD'] %>
+
+
+test:
+  adapter: postgresql
+  database: music_db_test
+  pool: 5
+  timeout: 5000
