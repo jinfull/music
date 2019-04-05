@@ -9,7 +9,46 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+    <h1 font-family: 'Comic Sans MS', 'Comic Sans', cursive;>
+    THIS IS MY MUSIC APP ^^
+    </h1>
+
   <body>
     <%= yield %>
+
+    <% if logged_in? %>
+      <br>
+      <%= "you are logged in my dear friend #{current_user.email}"%>
+      <form action="<%= sessions_url %>" method = "post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="log out">
+
+      </form>
+    <% else %>
+      <br>
+      <%= "you are not logged in, GUEST"%>
+      <br>
+      <br>
+      <form action="<%= new_sessions_url %>" method = "get">
+      <input type="submit" value="log in">
+      </form>
+
+      <form action="<%= new_user_url %>" method = "get">
+      <input type="submit" value="Sign up">
+      </form>
+    <% end %>
+
+
+
+
+    <% if flash[:errors] %>
+      <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
   </body>
 </html>
